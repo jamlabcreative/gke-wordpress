@@ -1,0 +1,46 @@
+# Default WordPress Site Info
+name: jamlab         # Kubernetes Namespace (A-z,0-9,'-')
+domain: jamlab.com.au     # Domain, e.g., mysite.com, mysite2.com, dev.anysite.com, etc.
+storage: 10Gi      # Storage Size
+ssd: false         # true=ssd, false=standard default
+tls: true          # Set to 'true' for HTTPS/TLS/SSL
+
+wpMemoryLimit: '256M'
+wpMaxMemoryLimit: '256M'
+
+enableResourceLimits: false   # If true, adjust below
+#requestsMemory: 128Mi
+#requestsCpu: 125m
+#limitsMemory: 256Mi
+#limitsCpu: 1000m
+
+wpImage: "stcox/wordpress"
+wpImageTag: "1.2"
+
+ngImage: "stcox/nginx"
+ngImageTag: "1.0"
+
+replicas: 1
+maxSurge: 1  
+maxUnavailable: 1
+
+wpRedisHost: 'redis.redis'
+wpRedisPort: '6379'
+
+dbUser: proxyuser
+dbPass: proxyuserpassword
+
+# Cloud SQL Instance Name
+dbConn: jamlab-182402:australia-southeast1:jamlab  # from https://console.cloud.google.com/sql/instances
+dbCred: '{
+  "type": "service_account",
+  "project_id": "jamlab-182402",
+  "private_key_id": "17084f396f96af2470ccd48ed3c59acd3c1fffba",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCzKi+Y4StlLIIP\nXDimqPiIoY3DGJrrY8oJC6wz6BVe6mKhJjPaa16Lu37cVy9t8LedBC3KzfqjfLd1\na+aS6Wi8j89096x+sYyzy7HtOXedwp5Qkfu5AW5ty8ZyNPu1judI4SLlilTogzIF\nFs5WWRvvclni/z3lPXaOXBg0ZxhTQOll409VnZo8NE6lGragrrhuKSRNsW/cTG9c\nVZXwtXbv5anfaGcYFvpRfDNEKqxKqqqXPXCzI80GQrF0EoIohF5Gwnujtl4gEfw9\nUiIpX/HHRt2oLa1HpEmYWe0lCZ0Os3comR4AvAqYwvwQ62Q0DClZjDhEUuOnZX/q\n7p+StpUPAgMBAAECggEAAauv7CgisMnwIBc1Y5Tl//Hv7j+SRAXeMGvZOI8h53A6\nveGAbPJO6n+JFRQD722ewZT0ZM2CdM2XIwUqjiNBtlIw+e3MatyvpIZyK6Ae5BaY\nfuGdmmVd6OkUMt1R1jcgQBjVyD8N+Pe8qQBgjRIE+uOBMi4DkNnjNDwvm9EKSXjh\nb7uYAGyyYbpVue8THsc8B+ZUfulfZrdHFIO5/9Q7IU3Tlv/wvZ821EkyqYg/6oFU\nyWJkIDVt9cuEIl+R9SfvMagcDfXN+/kpAGz/eOaqxN55DuOQmniFiXPE2M2h9pSw\ncHRBCLe32r54aiT8/qj00KSAElVK2gB2yavQYR/7oQKBgQD7aD8dzM5lUHs3lyud\nmNywl+ObHN4c8vSQCJmhTehTtm/b/J8QRWy0tKbfeN9mAFTTm94JHLXLIri7PZ20\nfvwlQGK4dCBcZDwXfIstt5oImR2Sx6NubMKzVMw02VIJL2M4X41k1jy9NtWPSyo7\nrZn6/K1G2o3ct0+SbXL1FVOUHQKBgQC2cBWA1xXltW4Z67adj33RFwE6SbxisyjC\nvfxAmR3RZ/otbGKs7d3Xao2Hhq0odt5r6CsDcyX6NTZ9JdLfau1b60wOGEd2GOmX\nwQ59y7vPH33BpjC384thrbBRSKFhU96GuyoBjlkU3nCpxMti8ouJG7b8s0xxixbm\nc6SC/4/uGwKBgQD4UbNl39FNSP0rn2k5NK9mzd/GafEJbwAY9CWqqaT8aop6Iz+J\ndsk0g+r/eAhQW6tth9r77RuzFQyaBPYsPfEXak0YG7uLBoZEPIPMGDlQnMwVGpNW\nkp6NOwioeq8I24GJQPgLzYAY9HxkGL4STBp3SfRss5rDk1xJKUoOwY3YEQKBgFeB\nvZ62DEfJVY1TVZ2PtS60lR8rPRQukU+Pp04o43eNIx/kjBQcaDsqXcZy39233ont\nq6wU8FNqcL9ohBQsCrv7Sdi85pIL8weaT2Qhc+0uUrivCVFCnUl18UubxeSUQPlp\nDwX+DFaJN4sG3POSGUHjrErbicAwkgRp1bAL+zKfAoGAXSQdRJXQ9bhdXTBZumdL\nxJVrQ+HADJsn3sXiJ3txOcpCSkyu24XEwt2FVvtZF3hIwbLcTZStCHxDKXfz8xEv\n9nKGnS2Jt816YomAL9RG/8oHmH9KtCPVXDM3xQuEDtT0ul4SlBTKaVVkmsKBsEu5\ne48bP3xMiYwEFaA3R5q9cnY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "jamlab-cloud-sql@jamlab-182402.iam.gserviceaccount.com",
+  "client_id": "108662865647367162384",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jamlab-cloud-sql%40jamlab-182402.iam.gserviceaccount.com"
+}' # sql json credentials
